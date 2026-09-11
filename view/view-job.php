@@ -5,7 +5,10 @@ if (session_status() === PHP_SESSION_NONE) {
 	session_start();
 }
 require_once __DIR__ . '/../model/Job.php';
+<<<<<<< HEAD
 require_once __DIR__ . '/../model/JobSeeker.php';
+=======
+>>>>>>> 26ffc689ade1d0e3ba660de2ec0d3ce76f306b7a
 
 if (!isset($_SESSION['username'])) {
 	header("Location: login.php");
@@ -20,6 +23,7 @@ if (!$job_detail) {
 	echo "Job not found.";
 	exit();
 }
+<<<<<<< HEAD
 
 // Check if job seeker has saved or applied to this job
 $isSaved = false;
@@ -29,6 +33,8 @@ if ($_SESSION['role'] == 'seeker') {
 	$isSaved = $jobSeeker->isJobSaved($_SESSION['user_id'], $job_id);
 	$hasApplied = $jobSeeker->hasApplied($job_id, $_SESSION['user_id']);
 }
+=======
+>>>>>>> 26ffc689ade1d0e3ba660de2ec0d3ce76f306b7a
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -46,6 +52,7 @@ if ($_SESSION['role'] == 'seeker') {
 		.company-card { background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 6px; padding: 20px; display: flex; gap: 20px; margin-top: 30px; }
 		.company-logo { width: 80px; height: 80px; border-radius: 6px; object-fit: cover; background: #ccc; }
 		.nav-back a { color: #667eea; text-decoration: none; font-weight: bold; }
+<<<<<<< HEAD
 		.btn { padding: 12px 25px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; text-decoration: none; display: inline-block; margin-right: 10px; }
 		.btn-primary { background: #667eea; color: white; }
 		.btn-primary:hover { background: #5568d3; }
@@ -63,6 +70,8 @@ if ($_SESSION['role'] == 'seeker') {
 		.alert { padding: 15px; border-radius: 4px; margin-bottom: 20px; }
 		.alert-success { background: #e8f5e9; color: #2e7d32; border: 1px solid #4caf50; }
 		.alert-error { background: #ffebee; color: #c62828; border: 1px solid #f44336; }
+=======
+>>>>>>> 26ffc689ade1d0e3ba660de2ec0d3ce76f306b7a
 	</style>
 </head>
 <body>
@@ -73,6 +82,7 @@ if ($_SESSION['role'] == 'seeker') {
 			<a href="../index.php">← Back to Dashboard</a>
 		</div>
 
+<<<<<<< HEAD
 		<?php if (isset($_SESSION['success'])) { ?>
 			<div class="alert alert-success">
 				<?php echo htmlspecialchars($_SESSION['success']); unset($_SESSION['success']); ?>
@@ -121,6 +131,14 @@ if ($_SESSION['role'] == 'seeker') {
 				<span style="color: #c62828; font-weight: bold;">This position is no longer accepting applications</span>
 			</div>
 		<?php } ?>
+=======
+		<h1><?php echo htmlspecialchars($job_detail['title']); ?></h1>
+		<div class="meta-info">
+			📁 <?php echo htmlspecialchars($job_detail['category']); ?> |
+			📍 <?php echo htmlspecialchars($job_detail['location']); ?> |
+			💼 <?php echo htmlspecialchars($job_detail['job_type']); ?>
+		</div>
+>>>>>>> 26ffc689ade1d0e3ba660de2ec0d3ce76f306b7a
 
 		<div class="content-section" style="margin-top: 25px;">
 			<h3>Job Description</h3>
@@ -150,6 +168,7 @@ if ($_SESSION['role'] == 'seeker') {
 			</div>
 		</div>
 	</div>
+<<<<<<< HEAD
 
 	<?php if ($_SESSION['role'] == 'seeker') { ?>
 	<script>
@@ -188,5 +207,7 @@ if ($_SESSION['role'] == 'seeker') {
 		}
 	</script>
 	<?php } ?>
+=======
+>>>>>>> 26ffc689ade1d0e3ba660de2ec0d3ce76f306b7a
 </body>
 </html>
