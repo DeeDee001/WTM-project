@@ -62,3 +62,32 @@ CREATE TABLE IF NOT EXISTS `saved_jobs` (
   FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- 5. Create Categories Table (Admin-governed job categories)
+-- NOTE: jobs.category stays a free-text VARCHAR (employer's job-post form is
+-- unaffected). This table is the admin's canonical list; a category is
+-- considered "in use" by matching its name against jobs.category, so
+-- deletion can be blocked without a schema change to the jobs table.
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL UNIQUE,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Seed a few starter categories so Manage Categories isn't empty on first run
+INSERT IGNORE INTO `categories` (`name`) VALUES
+  ('IT'), ('Finance'), ('HR'), ('Marketing'), ('Sales'), ('Engineering');
+
+-- -------------------------------------------------------------------
+-- COPY/PASTE THIS BLOCK DIRECTLY INTO phpMyAdmin or MySQL Workbench
+-- -------------------------------------------------------------------
+USE `career_bridge`;
+
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(100) NOT NULL UNIQUE,
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT IGNORE INTO `categories` (`name`) VALUES
+  ('IT'), ('Finance'), ('HR'), ('Marketing'), ('Sales'), ('Engineering');
+

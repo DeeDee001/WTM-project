@@ -8,7 +8,6 @@ class User {
 		return $connection;
 	}
 
-<<<<<<< HEAD
 	function usernameExists($username) {
 		$sql = "SELECT id FROM users WHERE username = ? LIMIT 1;";
 		$connection = $this->establishConnection();
@@ -20,8 +19,6 @@ class User {
 		return $result->num_rows > 0;
 	}
 
-=======
->>>>>>> 26ffc689ade1d0e3ba660de2ec0d3ce76f306b7a
 	// Register a new user
 	function registerUser($username, $email, $password, $role) {
 		$hashed_password = password_hash($password, PASSWORD_DEFAULT);

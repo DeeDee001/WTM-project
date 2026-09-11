@@ -24,15 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 	$user = new User();
-<<<<<<< HEAD
 	if ($user->usernameExists($username)) {
 		$_SESSION['register_error'] = 'Username is already used. Please try a different username.';
 		header('Location: ../view/register.php');
 		exit();
 	}
 
-=======
->>>>>>> 26ffc689ade1d0e3ba660de2ec0d3ce76f306b7a
 	$result = $user->registerUser($username, $email, $password, $role);
 
 	if (is_int($result)) {

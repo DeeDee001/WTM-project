@@ -22,19 +22,11 @@ $root_base = ($nav_base === 'view/') ? '' : '../';
 
 		if ($role == 'employer') {
 			// The dashboard itself is the job list, so "My Jobs" points there too.
-<<<<<<< HEAD
-			// echo '<a href="' . $root_base . 'index.php" style="color: white; margin-right: 15px; text-decoration: none;">My Jobs</a>';
-			echo '<a href="' . $nav_base . 'create-job.php" style="color: white; margin-right: 15px; text-decoration: none;">Post Job</a>';
-			echo '<a href="' . $nav_base . 'company-profile.php" style="color: white; margin-right: 15px; text-decoration: none;">Company Profile</a>';
-		} else if ($role == 'seeker') {
-			echo '<a href="' . $nav_base . 'search-jobs.php" style="color: white; margin-right: 15px; text-decoration: none;">Search Jobs</a>';
-=======
 			echo '<a href="' . $root_base . 'index.php" style="color: white; margin-right: 15px; text-decoration: none;">My Jobs</a>';
 			echo '<a href="' . $nav_base . 'create-job.php" style="color: white; margin-right: 15px; text-decoration: none;">Post Job</a>';
 			echo '<a href="' . $nav_base . 'company-profile.php" style="color: white; margin-right: 15px; text-decoration: none;">Company Profile</a>';
 		} else if ($role == 'seeker') {
-			echo '<a href="' . $nav_base . 'job-search.php" style="color: white; margin-right: 15px; text-decoration: none;">Search Jobs</a>';
->>>>>>> 26ffc689ade1d0e3ba660de2ec0d3ce76f306b7a
+			echo '<a href="' . $nav_base . 'search-jobs.php" style="color: white; margin-right: 15px; text-decoration: none;">Search Jobs</a>';
 			echo '<a href="' . $nav_base . 'saved-jobs.php" style="color: white; margin-right: 15px; text-decoration: none;">Saved Jobs</a>';
 			echo '<a href="' . $nav_base . 'my-applications.php" style="color: white; margin-right: 15px; text-decoration: none;">My Applications</a>';
 		} else if ($role == 'recruiter') {
