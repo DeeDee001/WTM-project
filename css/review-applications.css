@@ -1,0 +1,120 @@
+body {
+			font-family: Arial, sans-serif;
+			background: #f4f7f6;
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			max-width: 1200px;
+			margin: 30px auto;
+			background: white;
+			border-radius: 8px;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+			padding: 30px;
+		}
+		h1 {
+			color: #333;
+			border-bottom: 2px solid #667eea;
+			padding-bottom: 10px;
+		}
+		.nav-back {
+			margin-bottom: 20px;
+		}
+		.nav-back a {
+			color: #667eea;
+			text-decoration: none;
+			font-weight: bold;
+		}
+		.job-picker {
+			background: #e8eaf6;
+			padding: 20px;
+			border-radius: 5px;
+			margin-bottom: 25px;
+		}
+		.job-picker label {
+			font-weight: bold;
+			margin-right: 10px;
+		}
+		.job-picker select {
+			padding: 8px 12px;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+			min-width: 300px;
+			font-size: 14px;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+		th, td {
+			border: 1px solid #ddd;
+			padding: 12px;
+			text-align: left;
+			vertical-align: top;
+		}
+		th {
+			background: #667eea;
+			color: white;
+		}
+		tr:hover {
+			background: #f5f5f5;
+		}
+		.cover-letter {
+			max-width: 320px;
+			max-height: 90px;
+			overflow-y: auto;
+			font-size: 13px;
+			color: #555;
+			white-space: pre-wrap;
+		}
+		.resume-link {
+			color: #667eea;
+			font-weight: bold;
+			text-decoration: none;
+		}
+		.resume-link:hover {
+			text-decoration: underline;
+		}
+		.status-badge {
+			display: inline-block;
+			padding: 6px 12px;
+			border-radius: 20px;
+			font-size: 13px;
+			font-weight: bold;
+			margin-bottom: 8px;
+		}
+		.status-submitted {
+			background: #e3f2fd;
+			color: #1976d2;
+		}
+		.status-reviewed {
+			background: #fff3e0;
+			color: #f57c00;
+		}
+		.status-shortlisted {
+			background: #e8f5e9;
+			color: #388e3c;
+		}
+		.status-rejected {
+			background: #ffebee;
+			color: #d32f2f;
+		}
+		.status-select {
+			display: block;
+			padding: 5px 8px;
+			border-radius: 4px;
+			border: 1px solid #ccc;
+			font-size: 13px;
+		}
+		.headline {
+			font-size: 13px;
+			color: #777;
+			margin-top: 3px;
+		}
+		.save-note {
+			font-size: 12px;
+			color: #4caf50;
+			margin-top: 5px;
+			display: none;
+		}
