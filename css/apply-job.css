@@ -1,0 +1,114 @@
+body {
+			font-family: Arial, sans-serif;
+			background: #f4f7f6;
+			margin: 0;
+			padding: 0;
+		}
+		.container {
+			max-width: 800px;
+			margin: 30px auto;
+			background: white;
+			border-radius: 8px;
+			box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+			padding: 30px;
+		}
+		h1 {
+			color: #333;
+			border-bottom: 2px solid #667eea;
+			padding-bottom: 10px;
+		}
+		.job-info {
+			background: #e8eaf6;
+			padding: 20px;
+			border-radius: 5px;
+			margin-bottom: 25px;
+		}
+		.job-title {
+			font-size: 22px;
+			font-weight: bold;
+			color: #333;
+			margin-bottom: 10px;
+		}
+		.company-name {
+			color: #667eea;
+			font-size: 16px;
+		}
+		.form-group {
+			margin-bottom: 20px;
+		}
+		.form-group label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 8px;
+			color: #555;
+		}
+		.form-group textarea, .form-group input[type="file"] {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			box-sizing: border-box;
+			font-family: Arial, sans-serif;
+		}
+		.form-group textarea {
+			min-height: 150px;
+			resize: vertical;
+		}
+		.resume-options {
+			background: #f9f9f9;
+			padding: 15px;
+			border-radius: 4px;
+			margin-bottom: 15px;
+		}
+		.resume-options label {
+			display: block;
+			margin-bottom: 10px;
+			font-weight: normal;
+		}
+		.resume-options input[type="radio"] {
+			margin-right: 8px;
+		}
+		.current-resume {
+			color: #667eea;
+			font-size: 14px;
+			margin-left: 24px;
+		}
+		.btn {
+			padding: 12px 30px;
+			background: #667eea;
+			color: white;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+		.btn:hover {
+			background: #5568d3;
+		}
+		.btn-secondary {
+			background: #999;
+			margin-left: 10px;
+		}
+		.btn-secondary:hover {
+			background: #777;
+		}
+		.alert {
+			padding: 15px;
+			border-radius: 4px;
+			margin-bottom: 20px;
+		}
+		.alert-error {
+			background: #ffebee;
+			color: #c62828;
+			border: 1px solid #ef5350;
+		}
+		.alert-info {
+			background: #e3f2fd;
+			color: #1565c0;
+			border: 1px solid #42a5f5;
+		}
+		.note {
+			font-size: 14px;
+			color: #666;
+			margin-top: 5px;
+		}
