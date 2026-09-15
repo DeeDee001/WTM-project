@@ -1,10 +1,28 @@
 <?php
 session_start();
 require_once __DIR__ . '/../model/JobSeeker.php';
+require_once __DIR__ . '/../model/Job.php';
 
 header('Content-Type: application/json');
 
-if (!isset($_SESSION['username']) || $_SESSION['role'] != 'seeker') {
+if (!isset($_SESSION['username'])) {
+	echo json_encode(['success' => false, 'message' => 'Unauthorized']);
+	exit();
+}
+
+if ($_SESSION['role'] == 'employer') {
+	$jobModel = new Job();
+	$keyword = $_GET['keyword'] ?? '';
+	$jobs = $jobModel->getEmployerJobs($_SESSION['user_id'], $keyword);
+
+	echo json_encode([
+		'success' => true,
+		'jobs' => $jobs
+	]);
+	exit();
+}
+
+if ($_SESSION['role'] != 'seeker') {
 	echo json_encode(['success' => false, 'message' => 'Unauthorized']);
 	exit();
 }
@@ -20,7 +38,6 @@ $salary_max = $_GET['salary_max'] ?? '';
 
 $jobs = $jobSeeker->searchJobs($keyword, $category, $location, $job_type, $salary_min, $salary_max);
 
-// Add is_saved and has_applied flags for each job
 foreach ($jobs as &$job) {
 	$job['is_saved'] = $jobSeeker->isJobSaved($_SESSION['user_id'], $job['id']);
 	$job['has_applied'] = $jobSeeker->hasApplied($job['id'], $_SESSION['user_id']);
@@ -30,3 +47,5 @@ echo json_encode([
 	'success' => true,
 	'jobs' => $jobs
 ]);
+
+
