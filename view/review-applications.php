@@ -88,7 +88,7 @@ if ($job_id > 0) {
 								</td>
 								<td>
 									<?php if (!empty($app['resume_path'])) { ?>
-										<a class="resume-link" href="../<?php echo htmlspecialchars($app['resume_path']); ?>" target="_blank">Download</a>
+										<a class="resume-link" href="../controller/download-resume.php?resume=<?php echo rawurlencode($app['resume_path']); ?>" target="_blank">Download</a>
 									<?php } else { ?>
 										<span style="color: #999;">No resume</span>
 									<?php } ?>
