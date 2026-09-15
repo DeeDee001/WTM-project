@@ -36,8 +36,15 @@ $jobs = $job->getEmployerJobs($_SESSION['user_id']);
 
 		<h3>Your Posted Jobs</h3>
 
+		<div class="posted-jobs-toolbar">
+			<div class="posted-jobs-search">
+				<label for="employer-job-search">Search your jobs</label>
+				<input type="text" id="employer-job-search" placeholder="Search by title, category, status...">
+			</div>
+		</div>
+
 		<?php if (count($jobs) > 0) { ?>
-			<table>
+			<table id="posted-jobs-table">
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -49,7 +56,7 @@ $jobs = $job->getEmployerJobs($_SESSION['user_id']);
 						<th>Actions</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="posted-jobs-body">
 					<?php foreach ($jobs as $job_item) { ?>
 						<tr id="job-row-<?php echo $job_item['id']; ?>">
 							<td><?php echo $job_item['id']; ?></td>
@@ -78,11 +85,80 @@ $jobs = $job->getEmployerJobs($_SESSION['user_id']);
 	</div>
 
 	<script>
+		const employerJobSearch = document.getElementById('employer-job-search');
+		const postedJobsBody = document.getElementById('posted-jobs-body');
+		let searchTimeout;
+
+		if (employerJobSearch) {
+			employerJobSearch.addEventListener('input', function () {
+				clearTimeout(searchTimeout);
+				searchTimeout = setTimeout(function () {
+					performEmployerSearch(employerJobSearch.value.trim());
+				}, 300);
+			});
+		}
+
+		function performEmployerSearch(keyword) {
+			fetch('controller/search-jobs-ajax.php?keyword=' + encodeURIComponent(keyword))
+				.then(response => response.json())
+				.then(data => {
+					if (data.success) {
+						renderPostedJobs(data.jobs);
+					} else {
+						alert('Failed to load jobs');
+					}
+				})
+				.catch(error => {
+					console.error('Error:', error);
+					alert('Error loading jobs');
+				});
+		}
+
+		function renderPostedJobs(jobs) {
+			if (!postedJobsBody) {
+				return;
+			}
+
+			if (jobs.length === 0) {
+				postedJobsBody.innerHTML = '<tr><td colspan="7" style="text-align:center; color:#666; padding:24px;">No matching jobs found.</td></tr>';
+				return;
+			}
+
+			postedJobsBody.innerHTML = jobs.map(job => `
+				<tr id="job-row-${job.id}">
+					<td>${job.id}</td>
+					<td>${escapeHtml(job.title)}</td>
+					<td>${escapeHtml(job.category)}</td>
+					<td>${escapeHtml(job.deadline)}</td>
+					<td>${job.applicant_count}</td>
+					<td>
+						<span class="badge badge-${job.status}"
+							  id="status-badge-${job.id}"
+							  onclick="toggleStatus(${job.id}, '${job.status}')">
+							${capitalizeFirst(job.status)}
+						</span>
+					</td>
+					<td class="action-links">
+						<a href="view/edit-job.php?id=${job.id}">Edit</a>
+						<a href="view/view-job.php?id=${job.id}">View</a>
+					</td>
+				</tr>
+			`).join('');
+		}
+
+		function capitalizeFirst(text) {
+			return text ? text.charAt(0).toUpperCase() + text.slice(1) : '';
+		}
+
+		function escapeHtml(text) {
+			const div = document.createElement('div');
+			div.textContent = text ?? '';
+			return div.innerHTML;
+		}
+
 		function toggleStatus(jobId, currentStatus) {
-			// Toggle between active and closed
 			const newStatus = currentStatus === 'active' ? 'closed' : 'active';
 
-			// AJAX request to toggle status
 			fetch('controller/toggle-job-status.php', {
 				method: 'POST',
 				headers: {
@@ -93,11 +169,12 @@ $jobs = $job->getEmployerJobs($_SESSION['user_id']);
 			.then(response => response.json())
 			.then(data => {
 				if (data.success) {
-					// Update the badge
 					const badge = document.getElementById('status-badge-' + jobId);
-					badge.className = 'badge badge-' + newStatus;
-					badge.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
-					badge.setAttribute('onclick', "toggleStatus(" + jobId + ", '" + newStatus + "')");
+					if (badge) {
+						badge.className = 'badge badge-' + newStatus;
+						badge.textContent = newStatus.charAt(0).toUpperCase() + newStatus.slice(1);
+						badge.setAttribute('onclick', "toggleStatus(" + jobId + ", '" + newStatus + "')");
+					}
 				} else {
 					alert('Failed to update status');
 				}
